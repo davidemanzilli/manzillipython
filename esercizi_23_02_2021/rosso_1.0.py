@@ -1,3 +1,4 @@
+
 colore = input(" scegli un colore ")
 
 if colore == "rosso":
