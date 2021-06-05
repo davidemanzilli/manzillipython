@@ -14,7 +14,7 @@ def compare_face(image1, image2):
 
     print(risultato)
 
-compare_face(image1 = "riconosciemnto_facciale\obama.jpg", image2= "riconosciemnto_facciale\obama1.jpg")
+compare_face(image1 = "riconoscimento_facciale\prova.jpg", image2= "riconoscimento_facciale\obama1.jpg")
 
 
 
