@@ -5,6 +5,7 @@ b = int(input("b = ?"))
 c = int(input("c = ?"))
 
 delta = (b**2-4*a*c)
+print(delta)
 
 if delta < 0:
     print("non ci sono soluzioni")
