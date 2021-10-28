@@ -18,7 +18,9 @@ class calcComb():
 
     def setStringa(self):
         if type(self.__stringa) == str:
-            print("si è una stringa")
+            return True
+        else:
+            return False
 
     def confUtil(self): #verificare se la STRINGA attributo di istanza è presente nel file word.italian.txt 
         print(
@@ -38,9 +40,9 @@ class calcComb():
                 break
         f.close()
         if conta == 0:
-            print("la parola non è presente nel dizionario")
+            return False
         else: 
-            print("la parola è contenuta nel dizionario ")
+            return True
 
     
     # PERMUTAZIONI
@@ -51,7 +53,7 @@ class calcComb():
 
         permutazioni = math.factorial(n)
 
-        print("il numero di permutazioni è", permutazioni)
+        return permutazioni
 
     def nPermutConRip(self):
         '''
@@ -79,14 +81,14 @@ class calcComb():
 
         if n >= k:    
             disp=math.factorial(n)/(math.factorial(n-k))
-            print("il numero di disposizioni semplici è", disp)
+            return disp 
         else:
             print("k non puo essere maggiore di n nelle disposizione semplici")
 
     def nDispSemplConRip(self, k):
         n = len(self.__stringa)
         disp=n**k
-        print("il numero di disposizioni con ripetizione è",disp)
+        return disp 
 
     def dispSemplSenzaRip(self):
         '''
@@ -106,7 +108,8 @@ class calcComb():
     def nCombSemplSenzaRip(self, k):
         n = len(self.__stringa)
         combsemplici = math.factorial(n) / (math.factorial(k) * (math.factorial(n-k)))
-        print("il numero di combinazioni semplici è ",combsemplici)
+        
+        return combsemplici
 
     def nCombSemplConRip(self, k):
         
@@ -114,7 +117,7 @@ class calcComb():
 
         comb = math.factorial(n+k-1) / (math.factorial(k) * (math.factorial(n-1)))
 
-        print("il numero di combinazioni con ripetizione è ",comb)
+        return comb
 
     def combSenzaRip(self):
         '''
@@ -129,6 +132,3 @@ class calcComb():
         '''
         return 0
 
-prova = calcComb("prova")
-
-prova.nCombSemplConRip(4)
