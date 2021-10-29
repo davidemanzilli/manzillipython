@@ -42,7 +42,7 @@ class calcComb():
         if conta == 0:
             return False
         else: 
-            return True
+            return True   # in questo modo però restituisci true anche se la parola è una sottostringa. se cerci "pop" restiuisce vero perchè: POPolazione lo contiene
 
     
     # PERMUTAZIONI
