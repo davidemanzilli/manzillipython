@@ -1,7 +1,7 @@
 
 import math
 
-# classe calcolo combinatorio
+"""classe calcolo combinatorio"""
 class calcComb():
 
     def __init__(self, stringa):
@@ -16,11 +16,10 @@ class calcComb():
     def get_listStringa(self):
         return self.__listStringa
 
-    def setStringa(self):
-        if type(self.__stringa) == str:
-            return True
-        else:
-            return False
+    def setStringa(self, str):
+        self.__stringa = str
+        self.__N = len(str)
+        self.__listStringa = list(str)
 
     def confUtil(self): #verificare se la STRINGA attributo di istanza è presente nel file word.italian.txt 
         print(
@@ -44,22 +43,38 @@ class calcComb():
         else: 
             return True   # in questo modo però restituisci true anche se la parola è una sottostringa. se cerci "pop" restiuisce vero perchè: POPolazione lo contiene
 
-    
-    # PERMUTAZIONI
+
+    def charRipetuti(self):
+        ripetizioni = {}
+        for carattere in range(self.__N):
+            if self.__stringa[carattere] not in ripetizioni.keys():
+                ripetizioni.setdefault(self.__stringa[carattere], 1)
+            else:
+                ripetizioni[self.__stringa[carattere]] += 1
+        ndiripetizioni = 1
+        for values in ripetizioni.values():
+            if values > 1:
+                ndiripetizioni *= math.factorial(values)
+        return ndiripetizioni
+
+    """PERMUTAZIONI"""
 
     def nPermutSenzaRip(self):
 
-        n = len(self.__stringa)
+        return math.factorial(self.__N)
 
-        permutazioni = math.factorial(n)
-
-        return permutazioni
-
-    def nPermutConRip(self):
-        '''
-        restituire il numero di permutazioni CON ripetizione
-        '''
-        return 0
+    def nPermutConRip(self): #ho reinserito qui il codice per facilitare il lavoro evitando di dover andare a richiamare la definizione
+        ripetizioni = {}
+        for carattere in range(self.__N):
+            if self.__stringa[carattere] not in ripetizioni.keys():
+                ripetizioni.setdefault(self.__stringa[carattere], 1)
+            else:
+                ripetizioni[self.__stringa[carattere]] += 1
+        ndiripetizioni = 1
+        for values in ripetizioni.values():
+            if values > 1:
+                ndiripetizioni *= math.factorial(values)
+        return (math.factorial(self.__N))/math.factorial(ndiripetizioni)
 
     def permutSenzaRip(self):
         '''
@@ -73,22 +88,19 @@ class calcComb():
         '''
         return 0
 
-    # DISPOSIZIONI
+    """DISPOSIZIONI"""
 
     def nDispSemplSenzaRip(self, k):
         
         n = len(self.__stringa)
 
         if n >= k:    
-            disp=math.factorial(n)/(math.factorial(n-k))
-            return disp 
+            return math.factorial(self.__N)/(math.factorial(self.__N-k))
         else:
             print("k non puo essere maggiore di n nelle disposizione semplici")
 
     def nDispSemplConRip(self, k):
-        n = len(self.__stringa)
-        disp=n**k
-        return disp 
+        return self.__N**k
 
     def dispSemplSenzaRip(self):
         '''
@@ -103,21 +115,15 @@ class calcComb():
         '''
         return 0
 
-    # COMBINAZIONI
+    """COMBINAZIONI"""
 
     def nCombSemplSenzaRip(self, k):
-        n = len(self.__stringa)
-        combsemplici = math.factorial(n) / (math.factorial(k) * (math.factorial(n-k)))
         
-        return combsemplici
+        return math.factorial(self.__N) / (math.factorial(k) * (math.factorial(self.__N-k)))
 
     def nCombSemplConRip(self, k):
-        
-        n = len(self.__stringa)
 
-        comb = math.factorial(n+k-1) / (math.factorial(k) * (math.factorial(n-1)))
-
-        return comb
+        return math.factorial(self.__N+k-1) / (math.factorial(k) * (math.factorial(self.__N-1)))
 
     def combSenzaRip(self):
         '''
@@ -132,3 +138,5 @@ class calcComb():
         '''
         return 0
 
+prova = calcComb("matematica")
+prova.nPermutConRip()
