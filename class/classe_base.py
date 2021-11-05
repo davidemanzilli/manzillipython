@@ -87,10 +87,8 @@ class calcComb():
     """DISPOSIZIONI"""
 
     def nDispSemplSenzaRip(self, k):
-        
-        n = len(self.__stringa)
 
-        if n >= k:    
+        if self.__N >= k:    
             return math.factorial(self.__N)/(math.factorial(self.__N-k))
         else:
             print("k non puo essere maggiore di n nelle disposizione semplici")
@@ -134,5 +132,3 @@ class calcComb():
         '''
         return 0
 
-prova = calcComb("luca")
-print(prova.permutSenzaRip())
