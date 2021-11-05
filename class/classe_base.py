@@ -64,17 +64,7 @@ class calcComb():
         return math.factorial(self.__N)
 
     def nPermutConRip(self): #ho reinserito qui il codice per facilitare il lavoro evitando di dover andare a richiamare la definizione
-        ripetizioni = {}
-        for carattere in range(self.__N):
-            if self.__stringa[carattere] not in ripetizioni.keys():
-                ripetizioni.setdefault(self.__stringa[carattere], 1)
-            else:
-                ripetizioni[self.__stringa[carattere]] += 1
-        ndiripetizioni = 1
-        for values in ripetizioni.values():
-            if values > 1:
-                ndiripetizioni *= math.factorial(values)
-        return (math.factorial(self.__N))/math.factorial(ndiripetizioni)
+        return (math.factorial(self.__N))/calcComb.charRipetuti(self)
 
     def permutSenzaRip(self):
         '''
@@ -140,3 +130,4 @@ class calcComb():
 
 prova = calcComb("matematica")
 prova.nPermutConRip()
+print(prova.nPermutConRip())
