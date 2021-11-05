@@ -27,21 +27,16 @@ class calcComb():
         al termine dell'operazione di verifichera otterai il risultato 
         """ 
         ) 
-        conta = 0
         f = open("class\words.italian.txt", 'r')
-        print(self.__stringa)
+        #print(self.__stringa)
         for riga in f:
             righe = f.readline()
             #print(righe)
             #print(self.__stringa)
-            if self.__stringa in righe:
-                conta  += 1
-                break
-        f.close()
-        if conta == 0:
-            return False
-        else: 
-            return True   # in questo modo però restituisci true anche se la parola è una sottostringa. se cerci "pop" restiuisce vero perchè: POPolazione lo contiene
+            if self.__stringa == righe[:-1]:
+                return True
+            else:
+                False
 
 
     def charRipetuti(self):
@@ -63,14 +58,25 @@ class calcComb():
 
         return math.factorial(self.__N)
 
-    def nPermutConRip(self): #ho reinserito qui il codice per facilitare il lavoro evitando di dover andare a richiamare la definizione
+    def nPermutConRip(self): 
         return (math.factorial(self.__N))/calcComb.charRipetuti(self)
 
     def permutSenzaRip(self):
-        '''
-        generare e restituire la lista di permutazioni SENZA ripetizione
-        '''
-        return 0
+        import itertools
+        listapermutazioni = list(itertools.permutations(self.__stringa))
+        temp = ''
+        anagrammi = []
+        for i in listapermutazioni:
+            for carattere in i:
+                # in temp concateno tutti gli elementi della tupla così da
+                # ottenere i singoli anagrammi della stringa iniziale
+                temp += carattere 
+
+            # aggiungo la parola ricostruita dalla tupla alla lista finale degli anagrammi
+            anagrammi.append(temp)
+            # "svuoto" la variabile temp così da ricostruire un secondo anagramma
+            temp = ''
+        return anagrammi 
 
     def permutConRip(self):
         '''
@@ -128,6 +134,5 @@ class calcComb():
         '''
         return 0
 
-prova = calcComb("matematica")
-prova.nPermutConRip()
-print(prova.nPermutConRip())
+prova = calcComb("luca")
+print(prova.permutSenzaRip())
