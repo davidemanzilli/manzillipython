@@ -21,11 +21,9 @@ class calcComb():
         self.__N = len(str)
         self.__listStringa = list(str)
 
-    def confUtil(self): #verificare se la STRINGA attributo di istanza è presente nel file word.italian.txt 
+    def cerca(self): #verificare se la STRINGA attributo di istanza è presente nel file word.italian.txt 
         print(
-        """
-        al termine dell'operazione di verifichera otterai il risultato 
-        """ 
+        """ Al termine dell'operazione di verifichera otterai il risultato """ 
         ) 
         f = open("class\words.italian.txt", 'r')
         #print(self.__stringa)
@@ -37,6 +35,13 @@ class calcComb():
                 return True
             else:
                 False
+
+    def ConfUtil(self): #TODO da ricontrollare 
+        for x in range(len(calcComb.permutSenzaRip(self))):  
+            calcComb.permutSenzaRip(self)[x] = self.__stringa
+            calcComb.cerca(self)
+        return calcComb.cerca(self)
+            
 
 
     def charRipetuti(self):
@@ -79,9 +84,7 @@ class calcComb():
         return anagrammi 
 
     def permutConRip(self):
-        '''
-        generare e restituire la lista di permutazioni CON ripetizione
-        '''
+        #TODO lista permutazioni con ripetizione 
         return 0
 
     """DISPOSIZIONI"""
@@ -97,16 +100,12 @@ class calcComb():
         return self.__N**k
 
     def dispSemplSenzaRip(self):
-        '''
-        generare e restituire la lista delle disposizioni semplici SENZA ripetizione
-        '''
+        #TODO lista disp senza ripetizione 
         return 0
 
 
     def dispSemplConRip(self):
-        '''
-        generare e restituire la lista delle disposizioni semplici CON ripetizione
-        '''
+        #TODO lista disp con ripetizione 
         return 0
 
     """COMBINAZIONI"""
@@ -119,16 +118,14 @@ class calcComb():
 
         return math.factorial(self.__N+k-1) / (math.factorial(k) * (math.factorial(self.__N-1)))
 
-    def combSenzaRip(self):
-        '''
-        generare e restituire la lista delle combinazioni SENZA ripetizione
-        '''
+    def combSenzaRip(self, k):
+        
         return 0
 
 
     def combConRip(self):
-        '''
-        generare e restituire la lista delle combinazioni CON ripetizione
-        '''
+        #TODO lista comb con ripetizione 
         return 0
 
+parola = calcComb("casa")
+print(parola.cerca())
