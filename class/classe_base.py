@@ -22,9 +22,6 @@ class calcComb():
         self.__listStringa = list(str)
 
     def cerca(self): #verificare se la STRINGA attributo di istanza è presente nel file word.italian.txt 
-        print(
-        """ Al termine dell'operazione di verifichera otterai il risultato """ 
-        ) 
         f = open("class\words.italian.txt", 'r')
         #print(self.__stringa)
         for riga in f:
@@ -99,10 +96,22 @@ class calcComb():
     def nDispSemplConRip(self, k):
         return self.__N**k
 
-    def dispSemplSenzaRip(self):
-        #TODO lista disp senza ripetizione 
-        return 0
+    def dispSemplSenzaRip(self, k):
+        import itertools
+        listadisposizioni = list(itertools.permutations(self.__stringa, k))
+        temp = ''
+        disposizioni = []
+        for i in listadisposizioni:
+            for carattere in i:
+                # in temp concateno tutti gli elementi della tupla così da
+                # ottenere i singoli anagrammi della stringa iniziale
+                temp += carattere 
 
+            # aggiungo la parola ricostruita dalla tupla alla lista finale degli anagrammi
+            disposizioni.append(temp)
+            # "svuoto" la variabile temp così da ricostruire un secondo anagramma
+            temp = ''
+        return disposizioni
 
     def dispSemplConRip(self):
         #TODO lista disp con ripetizione 
@@ -119,13 +128,40 @@ class calcComb():
         return math.factorial(self.__N+k-1) / (math.factorial(k) * (math.factorial(self.__N-1)))
 
     def combSenzaRip(self, k):
-        
-        return 0
+        import itertools
+        listacombinazioni = list(itertools.combinations(self.__stringa, k))
+        temp = ''
+        combinazioni = []
+        for i in listacombinazioni:
+            for carattere in i:
+                # in temp concateno tutti gli elementi della tupla così da
+                # ottenere i singoli anagrammi della stringa iniziale
+                temp += carattere 
+
+            # aggiungo la parola ricostruita dalla tupla alla lista finale degli anagrammi
+            combinazioni.append(temp)
+            # "svuoto" la variabile temp così da ricostruire un secondo anagramma
+            temp = ''
+        return combinazioni
 
 
-    def combConRip(self):
-        #TODO lista comb con ripetizione 
-        return 0
+    def combConRip(self, k):
+        import itertools
+        listacombinazioni = list(itertools.combinations_with_replacement(self.__stringa, k))
+        temp = ''
+        combinazioni = []
+        for i in listacombinazioni:
+            for carattere in i:
+                # in temp concateno tutti gli elementi della tupla così da
+                # ottenere i singoli anagrammi della stringa iniziale
+                temp += carattere 
+
+            # aggiungo la parola ricostruita dalla tupla alla lista finale degli anagrammi
+            combinazioni.append(temp)
+            # "svuoto" la variabile temp così da ricostruire un secondo anagramma
+            temp = ''
+        return combinazioni
 
 parola = calcComb("casa")
-print(parola.cerca())
+print(parola.nDispSemplSenzaRip(2))
+print(parola.dispSemplSenzaRip(2))
